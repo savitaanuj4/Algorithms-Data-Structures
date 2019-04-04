@@ -1,3 +1,5 @@
+import time
+
 """Implement quick sort in Python.
 Input a list.
 Output a sorted list."""
@@ -10,9 +12,9 @@ def quicksort(array):
         n=0
         i=0
         while(n<len(array)-i):
-            print(array)
-            print(n)
-            print(i)
+            #print(array)
+            #print(n)
+            #print(i)
             if(pivot<array[n]):
                 front = array[len(array)-i-2]
                 before = array[n]
@@ -25,7 +27,7 @@ def quicksort(array):
 
         front_index = n
         #back_index = len(array)-2
-        print(array)
+        #print(array)
 
         front_array = array[0:n-1]
         back_array = array[n:]
@@ -34,10 +36,19 @@ def quicksort(array):
         l = quicksort(front_array)
         l.append(pivot)
         l.extend(quicksort(back_array))
-        print(l)
+        #print(l)
 
         return l
 
 
 test = [21, 4, 1, 3, 9, 20, 25, 6, 21, 14]
-print(quicksort(test))
+times = []
+
+for i in range(1000):
+    start = time.clock()
+    quicksort(test)
+    end = time.clock()
+    times.append(end-start)
+
+average = sum(times)/len(times)
+print(average)
