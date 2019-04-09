@@ -1,4 +1,5 @@
 # Uses python3
+import random
 """You're going to write a binary search function.
 You should use an iterative approach - meaning
 using loops.
@@ -37,9 +38,38 @@ def binary_search(input_array, value):
 
     return -1
 
-test_list = [1,3,9,11,15,19,29, 35, 36, 37]
-test_val1 = 25
-test_val2 = 15
-print(binary_search(test_list, test_val1))
-print(binary_search(test_list, test_val2))
-print(binary_search(test_list, 11))
+def linear_search(a, x):
+    for i in range(len(a)):
+        if a[i] == x:
+            return i
+    return -1
+
+# compare naive algorithm linear search vs. binary search results
+def stress_test(n, m):
+    test_cond = True
+    while(test_cond):
+        a = []
+        for i in range(n):
+            a.append(random.randint(0, 10**9))
+        a.sort()
+        for i in range(m):
+            b = random.randint(0, n-1)
+            print([linear_search(a, a[b]), binary_search(a, a[b])])
+            # stops if the searches do not give identical answers
+            if(linear_search(a, a[b]) != binary_search(a, a[b])):
+                test_cond = False
+                print('broke here!')
+                break
+
+
+
+stress_test(100, 100000)
+
+
+
+#test_list = [1,3,9,11,15,19,29, 35, 36, 37]
+#test_val1 = 25
+#test_val2 = 15
+#print(binary_search(test_list, test_val1))
+#print(binary_search(test_list, test_val2))
+#print(binary_search(test_list, 11))
