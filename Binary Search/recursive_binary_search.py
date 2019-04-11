@@ -1,20 +1,19 @@
 # given array a and need to find value x
-def binary_search_recursive(a, x, position=0):
-    left, right = 0, len(a)
+def binary_search_recursive(a, x, left, right):
 
     index = (left+right)//2
     if a[index]==x:
-        return position+index
-    elif x>(a[-1]) or x<a[0]: # first case where x is not in the list!
+        return index
+    elif x>(a[right]) or x<a[left]: # first case where x is not in the list!
         return -1
-    elif len(a)==1: # second case where x is not in the list!
+    elif left==right: # case where search is complete and no value x not found
         return -1
+    elif left==right-1: # case where there are only two numbers left, check both!
+        left = right
+        return binary_search_recursive(a, x, left, right)
     elif a[index]<x:
         left = index
-        a = a[left:right]
-        position+=index # keeps track of the overall index
-        return binary_search_recursive(a, x, position)
+        return binary_search_recursive(a, x, left, right)
     elif a[index]>x:
         right = index
-        a = a[left:right]
-        return binary_search_recursive(a, x, position)
+        return binary_search_recursive(a, x, left, right)
