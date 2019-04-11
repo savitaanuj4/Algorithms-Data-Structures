@@ -1,6 +1,8 @@
 # given array a and need to find value x
-def binary_search_recursive(a, x, left, right):
-
+# left and right correspond to initial indices of array a bounding the search
+# segment of array a above and below, respectively
+def binary_search_recursive(a, x, left=0, right=(len(a)-1)):
+"""Recursive Binary Search algorithm implemented using list indexing"""
     index = (left+right)//2
     if a[index]==x:
         return index
