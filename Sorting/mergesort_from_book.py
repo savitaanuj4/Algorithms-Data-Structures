@@ -29,9 +29,9 @@ def merge(left, right):
     # it means that this is an individual item and is
     # already sorted.
     if not len(left):
-        return left
-    if not len(right):
         return right
+    if not len(right):
+        return left
 
     # Define variables used to merge the two pieces.
     result = []
